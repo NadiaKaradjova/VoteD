@@ -15,7 +15,7 @@ class VoteController extends FOSRestController
     /**
      * @Rest\Post("/vote")
      */
-    public function createCampaign(Request $request)
+    public function makeVote(Request $request)
     {
         $data = $request->request->all();
 
@@ -38,8 +38,43 @@ class VoteController extends FOSRestController
 
         $this->getDoctrine()->getManager()->persist($vote);
         $this->getDoctrine()->getManager()->flush();
-
-        return new Response("OK");
+        
+        return new Response($this->get('jms_serializer')->serialize($vote->getId(), 'json'), Response::HTTP_OK);
     }
+
+    /**
+     * @Rest\Put("/vote")
+     */
+    public function getDiscount(Request $request)
+    {
+        $data = $request->request->all();
+
+        $vote = $this->getDoctrine()->getRepository(Vote::class)->find($data['id']);       
+       
+        $randomKey = $this->generateRamdomString();
+        /** @var Vote $vote */
+        $vote->setEmail($data['emeil']);
+        $vote->setKey($randomKey);        
+        $vote->setUpdatedOn();
+
+        $this->getDoctrine()->getManager()->persist($vote);
+        $this->getDoctrine()->getManager()->flush();
+
+        return new Response($this->get('jms_serializer')->serialize($vote->getKey(), 'json'), Response::HTTP_OK);
+    }
+
+    private function generateRamdomString($length = 4)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $data = new \DateTime();
+        return $randomString.$data->getTimestamp();
+
+    }
+
 
 }
