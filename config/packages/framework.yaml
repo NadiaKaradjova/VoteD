@@ -1,5 +1,7 @@
 framework:
     secret: '%env(APP_SECRET)%'
+    templating:
+            engines: ['twig']
     #default_locale: en
     #csrf_protection: true
     #http_method_override: true
@@ -8,8 +10,7 @@ framework:
     # Remove or comment this section to explicitly disable session support.
     session:
         handler_id: ~
-        cookie_secure: auto
-        cookie_samesite: lax
+
 
     #esi: true
     #fragments: true
@@ -22,5 +23,3 @@ framework:
 
 #    templating:
 #            engines: ['twig', 'php']
-knp_doctrine_behaviors:
-    translatable:   true
