@@ -47,13 +47,14 @@ class VoteController extends FOSRestController
      */
     public function getDiscount(Request $request)
     {
-        $data = $request->request->all();
+        //$data = $request->request->all();
+        $data = json_decode($request->getContent(), true);
 
         $vote = $this->getDoctrine()->getRepository(Vote::class)->find($data['id']);       
        
         $randomKey = $this->generateRamdomString();
         /** @var Vote $vote */
-        $vote->setEmail($data['emeil']);
+        $vote->setEmail($data['email']);
         $vote->setKey($randomKey);        
         $vote->setUpdatedOn();
 
