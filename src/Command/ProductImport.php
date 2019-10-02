@@ -80,7 +80,7 @@ class ProductImport extends ContainerAwareCommand
         $output->writeln(count($result));
         $start = $input->getArgument('start_from');
 
-        $lenght = 1000;
+        $lenght = 5000;
         $result = array_slice($result, $start, $lenght);
 
         $count = 0;
