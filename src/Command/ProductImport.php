@@ -49,20 +49,7 @@ class ProductImport extends ContainerAwareCommand
 
             $forDelete = filter_var((string)$medication->DEL, FILTER_VALIDATE_BOOLEAN);
             $shortName = strtolower((string)$medication->ADNAMD);
-            $description = strtoupper((string)$medication->DSCRD);
-
-            $arr = [
-                "edt", "edt", "edp", "pdt", "parfum", "nail", "E d T", "EDC", "Lipstick", "Perfume", "Eyeliner", "Powder", "Lipliner",
-                "Feather Hair Extensions", "Rouge", "Mascara", "Deodorant", "Candle"
-            ];
-
-            $decs = [
-                "CHANEL", "MAYBELLINE", "D&G", "SISLEY", "YSL", "VERSACE", "GUERLAIN", "AMAVITA", "COOP VITALITY",
-                "DAVIDOFF", "CLARINS", "VICTORINOX", "GUESS", "BVLGARI", "GUCCI", "ADIDAS", "BALMAIN", "FERRAGAMO", "MEXX", "BOSS", "LANCOME",
-                "MARC JACOBS", "MOSCHINO", "HERMES", "ARMANI", "FERRE", "CACHAREL", "MUGLER", "AZZARO", "POLICE", "LANVIN", "DIESEL",
-                "ZEGNA", "DIOR", "ZIPPO", "JIMMY CHOO", "KENZO", "CARTIER", "HILFIGER", "BENETTON", "PRADA", "VALENTINO",
-                "EBNAT", "KYBUN", "KILIAN", "OREAL"
-            ];
+            $description = (string)$medication->DSCRD;
 
             if (preg_match('/' . implode("|", Constants::DESCRIPTION).'\b/', $description)) {
                 continue;
@@ -77,7 +64,7 @@ class ProductImport extends ContainerAwareCommand
 
 
         //$result = array_unique($result);
-        $output->writeln(count($result));
+        //$output->writeln(count($result));
         $start = $input->getArgument('start_from');
 
         $lenght = 5000;
@@ -92,7 +79,7 @@ class ProductImport extends ContainerAwareCommand
                 }
             }
 
-            $output->writeln($count . ' - Number: ' . $number);
+            //$output->writeln($count . ' - Number: ' . $number);
             $drug = $doctrine->getRepository(Product::class)->find($number);
             $count++;
             if (!$drug) {
