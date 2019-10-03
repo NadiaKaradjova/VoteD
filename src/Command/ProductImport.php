@@ -79,7 +79,7 @@ class ProductImport extends ContainerAwareCommand
                 }
             }
 
-            //$output->writeln($count . ' - Number: ' . $number);
+            $output->writeln($count . ' - Number: ' . $number);
             $drug = $doctrine->getRepository(Product::class)->find($number);
             $count++;
             if (!$drug) {

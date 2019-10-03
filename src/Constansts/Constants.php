@@ -7,8 +7,8 @@ namespace App\Constansts;
 class Constants
 {
 
-    const SHORTNAME = ["edt", "edt", "edp", "pdt", "parfum", "nail", "E d T", "EDC", "Lipstick", "Perfume", "Eyeliner", "Powder", "Lipliner",
-        "Feather Hair Extensions", "Rouge", "Mascara", "Deodorant", "Candle"];
+    const SHORTNAME = ["edt", "edt", "edp", "pdt", "parfum", "nail", "e d t", "edc", "lipstick", "perfume", "eyeliner", "powder", "lipliner",
+        "feather hair extensions", "rouge", "mascara", "deodorant", "candle", "eyeshadow", "lip gloss", "déodorant"];
 
     const DESCRIPTION = [
         "CHANEL", "MAYBELLINE", "D&G", "SISLEY", "YSL", "VERSACE", "GUERLAIN", "AMAVITA", "COOP VITALITY",
