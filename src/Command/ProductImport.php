@@ -64,7 +64,7 @@ class ProductImport extends ContainerAwareCommand
 
 
         //$result = array_unique($result);
-        //$output->writeln(count($result));
+        $output->writeln(count($result));
         $start = $input->getArgument('start_from');
 
         $lenght = 5000;
