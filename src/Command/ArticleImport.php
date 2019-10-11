@@ -84,7 +84,7 @@ class ArticleImport extends ContainerAwareCommand
             $drug = $doctrine->getRepository(Product::class)->find((int)$basic->PRDNO);
 
             if (!$drug) {
-                $output->writeln($count . " - Article number: " . $number . " No drug");
+                //$output->writeln($count . " - Article number: " . $number . " No drug");
                 continue;
             }
 
@@ -115,7 +115,7 @@ class ArticleImport extends ContainerAwareCommand
             $doctrine->getManager()->persist($article);
             $doctrine->getManager()->flush();
             $countRealImportArticles++;
-            $output->writeln($count . " - Article number: " . $number);
+            //$output->writeln($count . " - Article number: " . $number);
         }
         $next = $start + $lenght;
         $output->writeln("Real import count: " . $countRealImportArticles);
