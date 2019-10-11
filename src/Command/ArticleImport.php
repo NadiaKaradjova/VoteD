@@ -67,7 +67,7 @@ class ArticleImport extends ContainerAwareCommand
 //        $output->writeln(count($result));
 //        die;
 
-        $lenght = 6000;
+        $lenght = 10000;
         $result = array_slice($result, $start, $lenght);
         $count = 0;
         $countRealImportArticles = 0;
