@@ -4,6 +4,7 @@ namespace App\Entity;
 
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 
@@ -68,12 +69,18 @@ class Product
     private $trade;
 
     /**
+     * @ORM\OneToMany(targetEntity="Article", mappedBy="product", cascade={"remove"})
+     */
+    private $articles;
+
+    /**
      * @ORM\Column(type="string", length=14000, nullable=true)
      */
     private $other;
 
     public function __construct(int $productNumber)
     {
+        $this->articles = new ArrayCollection();
         $this->productNumber = $productNumber;
     }
 
@@ -235,6 +242,20 @@ class Product
         $this->trade = $trade;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getArticles()
+    {
+        return $this->articles;
+    }
 
+    /**
+     * @param mixed $articles
+     */
+    public function setArticles($articles): void
+    {
+        $this->articles = $articles;
+    }
 
 }
